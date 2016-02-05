@@ -15,7 +15,7 @@ var bot = controller.spawn({
     token: config.token
 }).startRTM();
 
-controller.hears(['hello', 'hi'], ['direct_message', 'direct_mention', 'mention'], function(bot, message) {
+controller.hears(['^hello', '^hi$'], ['direct_message', 'direct_mention', 'mention'], function(bot, message) {
     bot.api.reactions.add({
         timestamp: message.ts,
         channel: message.channel,
@@ -35,6 +35,9 @@ controller.hears(['hello', 'hi'], ['direct_message', 'direct_mention', 'mention'
     });
 });
 
+controller.hears(['what\'s the latest\\?*'], ['direct_message', 'direct_mention', 'mention'], function(bot, message) {
+    bot.reply(message, 'Where do I begin?!');
+});
 
 var endCallback =  function(response, convo) {
     convo.say('Alrighty then, ciao!');
