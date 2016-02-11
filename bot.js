@@ -35,6 +35,7 @@ controller.hears(['^hello', '^hi$'], ['direct_message', 'direct_mention', 'menti
     });
 });
 
+// This is how you ask for gossip
 controller.hears(['what\'s the latest\\?*'], ['direct_message', 'direct_mention', 'mention'], function(bot, message) {
     bot.reply(message, 'Where do I begin?!');
 });
@@ -65,7 +66,7 @@ var askForLatest = function(response, convo) {
 };
 
 var askGotMore = function(response, convo) {
-    convo.ask('Interesting... Got more?', [
+    convo.ask('Interesting... Got more? `yes` or `no`', [
         {
             pattern: bot.utterances.no,
             callback: function(response, convo) {
@@ -96,6 +97,7 @@ var inputUtterances = [
     '^i heard a rumor'
 ];
 
+// This is how you input gossip
 controller.hears(inputUtterances, ['direct_message', 'direct_mention', 'mention'], function(bot, message) {
     bot.reply(message, 'Do tell - let\'s chat privately.');
     
